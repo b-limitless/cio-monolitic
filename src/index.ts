@@ -1,12 +1,7 @@
 import 'dotenv/config';
-import { app } from "./app";
 import mongoose from "mongoose";
+import { app } from "./app";
 import logger from "./logger";
-import connectToRabbitMQ from "@pasal/common/build/rabbitmq/connection";
-import { rabbitMQWrapper } from "@pasal/common";
-import { FebricCreatedListener } from "./events/listeners/febric-created-listener";
-import { FebricDeletedListener } from "./events/listeners/febric-deleted.listener";
-import { FebricUpdatedListener } from "./events/listeners/febric-updated-listener";
 
 const start = async () => {
  
