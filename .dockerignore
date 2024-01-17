@@ -1,0 +1,4 @@
+dist
+src/routes/__test__
+src/test
+**/*.test.ts
