@@ -45,6 +45,6 @@ start();
 app.listen(8000, () => {
   logger.log({
     level: "info",
-    message: `Hello world, Listening on port 3000`
+    message: `Hello world, Listening on port 8000`
   });
 });
