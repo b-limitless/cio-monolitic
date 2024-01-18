@@ -1,19 +1,36 @@
 import mongoose from "mongoose";
 import { Password } from "../utils/password";
-export interface CustomerAttrs {
+
+export type IMeasurementUnite = "feet" | "cm" | null;
+export enum IMeasurementUniteEnum {
+  feet = "feet",
+  cm = "cm",
+}
+
+export interface IMeasurementBase {
+  height: number | null;
+  inch: number | null;
+  weight: number | null;
+  age: number | null;
+  unite: IMeasurementUnite;
+}
+
+export interface CustomerAttrs extends IMeasurementBase {
   email: string;
   password: string;
   firstName: string | null;
   lastName: string | null;
   verified: boolean;
 }
-interface CustomerDoc extends mongoose.Document {
+
+interface CustomerDoc extends IMeasurementBase, mongoose.Document {
   email: string;
   password: string;
   verified: boolean;
   firstName: string | null;
   lastName: string | null;
 }
+
 interface CustomerModel extends mongoose.Model<CustomerDoc> {
   build(attrs: CustomerAttrs): CustomerDoc;
 }
@@ -39,6 +56,15 @@ const CustomerSchema = new mongoose.Schema(
     lastName: {
       type: String,
       default: null,
+    },
+    height: { type: Number, default: null },
+    inch: { type: Number, default: null },
+    weight: { type: Number, default: null },
+    age: { type: Number, default: null },
+    unite: {
+      type: String,
+      enums: Object.values(IMeasurementUniteEnum),
+      default: IMeasurementUniteEnum.feet,
     },
   },
   {
