@@ -14,6 +14,13 @@ import { verificationRouter } from "./routes/verify";
 import { KYCRouter } from "./routes/kyc";
 import { profileRouter } from "./routes/profile";
 import { teamRouter } from "./routes/team";
+import bodyParser from 'body-parser';
+import { createFebricRouter } from "./routes/product/new";
+import { indexProductRouter } from "./routes/product";
+import { showProductRouter } from "./routes/product/show";
+import { updateFebricRouter } from "./routes/product/update";
+import { uploadeRouter } from "./routes/product/upload";
+import { deleteFebricRouter } from "./routes/product/delete";
 
 
 const app = express();
@@ -36,6 +43,8 @@ app.use(
     maxAge: 3600000 // 10000 * 60 minutes * 60 seconds
   })
 );
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 
 app.use(currentUser);
@@ -49,6 +58,14 @@ app.use(verificationRouter);
 app.use(KYCRouter);
 app.use(profileRouter);
 app.use(teamRouter);
+app.use(currentUser);
+app.use(createFebricRouter);
+app.use(indexProductRouter);
+app.use(showProductRouter);
+app.use(updateFebricRouter);
+app.use(uploadeRouter);
+app.use(deleteFebricRouter);
+
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
 });

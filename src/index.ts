@@ -42,7 +42,7 @@ const start = async () => {
 
 start();
 
-app.listen(3000, () => {
+app.listen(8000, () => {
   logger.log({
     level: "info",
     message: `Hello world, Listening on port 3000`

@@ -1,0 +1,32 @@
+import { body, ValidationChain } from "express-validator";
+
+export const febricBodyRequest: ValidationChain[] = [
+  body("title").notEmpty().withMessage("Title must not be empty"),
+  body("price").isFloat({ min: 0 }).withMessage("Price must be a positive number"),
+  body("deliveryTime").notEmpty().withMessage("Delivery time must not be empty"),
+  // body("imageLink").notEmpty().withMessage("Image link must not be empty"),
+  body("excellence").notEmpty().withMessage("Excellence must not be empty"),
+  body("warmth").notEmpty().withMessage("Warmth must not be empty"),
+  body("weight").notEmpty().withMessage("Weight must not be empty"),
+  // body("season").notEmpty().withMessage("Season must not be empty"),
+  body("threadStyle").notEmpty().withMessage("Thread style must not be empty"),
+  body("brightness").notEmpty().withMessage("Brightness must not be empty"),
+  body("superShiny").isBoolean().withMessage("Super shiny must be a boolean value"),
+  // body("material").notEmpty().withMessage("Material must not be empty"),
+  body("tone").notEmpty().withMessage("Tone must not be empty"),
+  // body("threadCount").notEmpty().withMessage("Thread count must be a non-negative integer"),
+  body("opacity").notEmpty().withMessage("Opacity must not be empty"),
+  body("waterproof").notEmpty().withMessage("Waterproof must be a boolean value"),
+  body("stretchyText").notEmpty().withMessage("Stretchy text must not be empty"),
+  body("stretchy").notEmpty().withMessage("Stretchy must be a boolean value"),
+  // body("mis").notEmpty().withMessage("MIS must not be empty"),
+  body("type").notEmpty().withMessage("Type must not be empty"),
+  body("febricTypes").notEmpty().withMessage("Fabric types must not be empty"),
+  body("febricSeasons").notEmpty().withMessage("Fabric seasons must not be empty"),
+  body("threadTypes").notEmpty().withMessage("Thread types must not be empty"),
+  body("threadCounts").notEmpty().withMessage("Thread counts must not be empty"),
+  body("characters").isArray().withMessage("Characters must be an array"),
+  body("originalImageUrl").notEmpty().withMessage("Opacity must not be empty"),
+  body("thumbnailImageUrl").notEmpty().withMessage("Opacity must not be empty"),
+  
+];

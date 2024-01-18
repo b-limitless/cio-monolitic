@@ -19,7 +19,7 @@ export class FebricServiceLocal {
 
   async findByIdAndDelete(id: string) {
     try {
-      await Febric.findByIdAndDelete(id);
+      return await Febric.findByIdAndDelete(id);
     } catch (err:any) {
       throw new Error(err);
     }

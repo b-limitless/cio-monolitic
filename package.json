@@ -27,6 +27,7 @@
   "dependencies": {
     "@pasal/common": "^1.0.41",
     "body-parser": "^1.20.1",
+    "cloudinary": "^1.41.2",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -37,6 +38,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.20",
     "mongoose-update-if-current": "^1.4.0",
+    "multer": "*",
     "nodemailer": "^6.9.4",
     "ts-node-dev": "^1.1.8",
     "winston": "^3.10.0"
@@ -48,6 +50,8 @@
     "@types/jest": "^29.5.3",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/mongoose": "^5.11.97",
+    "@types/multer": "^1.4.11",
+    "@types/node": "^20.11.5",
     "@types/nodemailer": "^6.4.9",
     "@types/rascal": "^10.0.6",
     "@types/supertest": "^2.0.12",

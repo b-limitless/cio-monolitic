@@ -3,7 +3,6 @@ import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface FebricAttrs {
   userId: mongoose.Schema.Types.ObjectId;
-  febricId: any;
   title: string;
   price: number;
   deliveryTime: string;
@@ -16,7 +15,7 @@ interface FebricAttrs {
   superShiny: boolean;
   material: string;
   tone: string;
-  threadCount: number;
+  threadCount: string;
   opacity: string;
   waterproof: boolean;
   stretchyText: string;
@@ -30,11 +29,11 @@ interface FebricAttrs {
   characters: string[];
   thumbnailImageUrl:string;
   originalImageUrl:string;
+  compositions: any[]
 }
 
 interface FebricDoc extends mongoose.Document {
   userId: mongoose.Schema.Types.ObjectId;
-  febricId: any;
   title: string;
   price: number;
   deliveryTime: string;
@@ -62,6 +61,7 @@ interface FebricDoc extends mongoose.Document {
   thumbnailImageUrl:string;
   originalImageUrl:string;
   version: number;
+  compositions: any[]
 
 }
 
@@ -73,10 +73,8 @@ const febricSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-    },
-    febricId: {
-      type: mongoose.Schema.Types.ObjectId,
-  
+      ref: "User",
+      required: true
     },
     title: {
       type: String,
@@ -102,10 +100,10 @@ const febricSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    season: {
-      type: String,
-      required: true,
-    },
+    // season: {
+    //   type: String,
+    //   required: true,
+    // },
     threadStyle: {
       type: String,
       required: true,
@@ -118,24 +116,24 @@ const febricSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
-    material: {
-      type: String,
-      required: true,
-    },
+    // material: {
+    //   type: String,
+    //   required: true,
+    // },
     tone: {
       type: String,
       required: true,
     },
-    threadCount: {
-      type: Number,
-      required: true,
-    },
+    // threadCount: {
+    //   type: Number,
+    //   required: true,
+    // },
     opacity: {
       type: String,
       required: true,
     },
     waterproof: {
-      type: Boolean,
+      type: String,
       required: true,
     },
     stretchyText: {
@@ -143,13 +141,13 @@ const febricSchema = new mongoose.Schema(
       required: true,
     },
     stretchy: {
-      type: Boolean,
-      required: true,
-    },
-    mis: {
       type: String,
       required: true,
     },
+    // mis: {
+    //   type: String,
+    //   required: true,
+    // },
     type: {
       type: String,
       required: true,
@@ -182,6 +180,10 @@ const febricSchema = new mongoose.Schema(
     originalImageUrl:{
       type:String,
       required:true
+    }, 
+    compositions: {
+      type: Array, 
+      required: true
     }
   },
   {
