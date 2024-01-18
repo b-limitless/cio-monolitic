@@ -1,15 +1,5 @@
 import mongoose from "mongoose";
-
-export enum ProductType {
-  shirt = "shirt",
-  pant = "pant",
-  suit = "suit",
-}
-
-export enum ProductPartNames {
-  collar = "collar",
-  cuff = "cuff",
-}
+import { ProductPartNames, ProductType } from "./types";
 
 export interface StyleAttrs {
   type: ProductType;
