@@ -1,6 +1,6 @@
 import request from "supertest";
-import { app } from "../../app";
-import { Febric } from "../../models/febric";
+import { app } from "../../../app";
+import { Febric } from "../../../models/febric";
 
 
 const  originalImageUrl ="https://res.cloudinary.com/dun5p8e5d/image/upload/v1691056368/images/ABC/aqycbx1lgccrndirskjn.webp";

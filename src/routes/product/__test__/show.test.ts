@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../../app';
+import { app } from '../../../app';
 import mongoose from 'mongoose';
 
 it('throw 400 bad request while no request valid mongo id is supplied', async() => {

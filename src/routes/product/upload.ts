@@ -14,7 +14,7 @@ const upload = multer({
 // Make server available
 router.post(
   "/api/products/v1/upload",
-  // requireAuth,
+  requireAuth,
   upload.single("image"),
   async (req, res) => {
     try {
