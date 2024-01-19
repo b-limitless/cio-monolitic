@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../../app";
+import { app } from "../../../app";
 
 it("thow en 400 error if no permission name is supplied", async () => {
   await request(app).post("/api/users/permission/create").send({}).expect(400);

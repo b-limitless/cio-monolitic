@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../../app";
+import { app } from "../../../app";
 
 it("Throw an 403 error if user is not authenticaled", async () => {
   await request(app).post("/api/users/kyc").send({}).expect(401);

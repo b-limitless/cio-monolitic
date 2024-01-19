@@ -1,6 +1,6 @@
 import request from "supertest";
 import { User } from "../../../models/user";
-import { app } from "../../app";
+import { app } from "../../../app";
 
 let verifiedUser = {} as any;
 
