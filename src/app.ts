@@ -21,6 +21,7 @@ import { showProductRouter } from "./routes/product/show";
 import { updateFebricRouter } from "./routes/product/update";
 import { uploadeRouter } from "./routes/product/upload";
 import { deleteFebricRouter } from "./routes/product/delete";
+import { customerSignupRouter } from "./routes/customer/new";
 
 
 const app = express();
@@ -65,7 +66,7 @@ app.use(showProductRouter);
 app.use(updateFebricRouter);
 app.use(uploadeRouter);
 app.use(deleteFebricRouter);
-
+app.use(customerSignupRouter);
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
 });

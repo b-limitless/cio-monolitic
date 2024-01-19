@@ -35,13 +35,6 @@ router.post(
       throw new BadRequestError(messages.emailExists, 'email');
     }
 
-    // let selectedPermissionExists = await checkPermissionAllSet(permissions);
-
-    // if (!selectedPermissionExists.status) {
-    //   throw new BadRequestError(
-    //     `Error ${selectedPermissionExists.permissions}`
-    //   );
-    // }
     const permissionObject = permissions.map((permission:string) => new mongoose.Types.ObjectId(permission));
 
     // Checking if permission is exists in collection
@@ -49,10 +42,7 @@ router.post(
     
     if(isAllPermissionExits.length !== permissions.length) {
       throw new BadRequestError("All provided permissions was unable to find");
-    }
-
-    // Build a password
-    
+    } 
 
     const user = await UserService.build({
       email,
@@ -61,65 +51,63 @@ router.post(
       role
     });
 
-    // Use a model to store the code for the verification
-    // Generate the code using dedicated algorithm
     const verificationCode = generateUniqueNumber();
     await VerficationService.build({ userId: user.id, verificationCode });
 
     res.status(201).send({ user, verificationCode });
 
-    // Publish the event 
-    try {
-      new UserCreatedPublisher(rabbitMQWrapper.client).publish({
-        userId: user.id,
-        email,
-        password,
-        permissions,
-        role,
-        firstName: null,
-        lastName: null,
-        country: null,
-        spokenLanguage: [],
-        about: null,
-        profileImageLink: null,
-        verified:false
-      });
-      logger.log("info", "User created event has been published");
-    } catch(err) {
-      logger.log("error", `Could not publish user created event ${err}`)
-    }
+    // // Publish the event 
+    // try {
+    //   new UserCreatedPublisher(rabbitMQWrapper.client).publish({
+    //     userId: user.id,
+    //     email,
+    //     password,
+    //     permissions,
+    //     role,
+    //     firstName: null,
+    //     lastName: null,
+    //     country: null,
+    //     spokenLanguage: [],
+    //     about: null,
+    //     profileImageLink: null,
+    //     verified:false
+    //   });
+    //   logger.log("info", "User created event has been published");
+    // } catch(err) {
+    //   logger.log("error", `Could not publish user created event ${err}`)
+    // }
 
     try {
       const getWelcomeEmailTempalte = await readFile("welcome.html", {});
   
-      // const sendWelcomeEmail = await sendMail({
-      //   from: mailerEmail,
-      //   to: email,
-      //   subject: "Welcome to Customize.io",
-      //   text: "",
-      //   html: getWelcomeEmailTempalte,
-      // });
-      // logger.log("info", messages.wcSent, sendWelcomeEmail);
+      const sendWelcomeEmail = await sendMail({
+        from: mailerEmail,
+        to: email,
+        subject: "Welcome to Customize.io",
+        text: "",
+        html: getWelcomeEmailTempalte,
+      });
+      logger.log("info", messages.wcSent, sendWelcomeEmail);
     } catch (err) {
       logger.log("error", `${messages.wcCanNotSent} ${err}`);
     }
 
-    // try {
-    //   const getHTMLTemplate = await readFile("email-verification.signup.html", {
-    //     verificationCode,
-    //   });
+    try {
+      const getHTMLTemplate = await readFile("email-verification.signup.html", {
+        verificationCode,
+      });
 
-    //   const sendVerificationEmail = await sendMail({
-    //     from: mailerEmail,
-    //     to: email,
-    //     subject: messages.verifyEmail,
-    //     text: "",
-    //     html: getHTMLTemplate,
-    //   });
-    //   logger.log("info", sendVerificationEmail);
-    // } catch (err) {
-    //   logger.log("error", err);
-    // }
+      const sendVerificationEmail = await sendMail({
+        from: mailerEmail,
+        to: email,
+        subject: messages.verifyEmail,
+        text: "",
+        html: getHTMLTemplate,
+      });
+      logger.log("info", sendVerificationEmail);
+    } catch (err) {
+      logger.log("error", err);
+    }
   }
 );
 
