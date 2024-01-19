@@ -8,7 +8,7 @@ export interface ModelAttrs {
   model: string;
   price: number;
 }
-interface ModelDoc extends mongoose.Document {
+export interface ModelDoc extends mongoose.Document {
   type: ProductType;
   name: string;
   title: string;

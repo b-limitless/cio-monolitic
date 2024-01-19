@@ -12,7 +12,7 @@ import {
 import logger from "@pasal/common/build/logger";
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
-import { febricBodyRequest } from "../../body-request/FebricBodyRequest";
+import { febricBodyRequest } from "../../body-request/Febric.body-request";
 
 import { Febric } from "../../models/febric";
 import { FebricService } from "../../services/Febric.Service";
