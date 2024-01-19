@@ -8,7 +8,7 @@ import { signupRouter } from "./routes/auth/signup";
 import { signoutRouter } from "./routes/auth/signout";
 import { permissionRouter } from "./routes/auth/permission";
 import { resetPasswordRouter } from "./routes/auth/reset-password";
-import { errorHandler, NotFoundError, currentUser } from "@pasal/common";
+import { errorHandler, NotFoundError, currentUser, currentCustomer } from "@pasal/common";
 import { currentUserRouter } from "./routes/auth/current-user";
 import { verificationRouter } from "./routes/auth/verify";
 import { KYCRouter } from "./routes/auth/kyc";
@@ -22,6 +22,7 @@ import { updateFebricRouter } from "./routes/product/update";
 import { uploadeRouter } from "./routes/product/upload";
 import { deleteFebricRouter } from "./routes/product/delete";
 import { customerSignupRouter } from "./routes/customer/signup";
+import { customerSigninRouter } from "./routes/customer/signin";
 
 
 
@@ -50,6 +51,7 @@ app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 
 app.use(currentUser);
+app.use(currentCustomer);
 app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signupRouter);
@@ -60,7 +62,6 @@ app.use(verificationRouter);
 app.use(KYCRouter);
 app.use(profileRouter);
 app.use(teamRouter);
-app.use(currentUser);
 app.use(createFebricRouter);
 app.use(indexProductRouter);
 app.use(showProductRouter);
@@ -68,7 +69,7 @@ app.use(updateFebricRouter);
 app.use(uploadeRouter);
 app.use(deleteFebricRouter);
 app.use(customerSignupRouter);
-app.use(customerSignupRouter);
+app.use(customerSigninRouter);
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
 });

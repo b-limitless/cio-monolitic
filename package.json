@@ -25,7 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@pasal/common": "^1.0.41",
+    "@pasal/common": "^1.0.42",
     "body-parser": "^1.20.1",
     "cloudinary": "^1.41.2",
     "cookie-session": "^1.4.0",

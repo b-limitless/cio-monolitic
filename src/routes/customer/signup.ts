@@ -34,7 +34,7 @@ router.post(
     );
 
     req.session = {
-      jwt: customerJWT,
+      customerJwt: customerJWT,
     };
 
     res.status(201).send({ email: customer.email, id: customer.id });
