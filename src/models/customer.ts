@@ -23,7 +23,7 @@ export interface CustomerAttrs extends IMeasurementBase {
   verified: boolean;
 }
 
-interface CustomerDoc extends IMeasurementBase, mongoose.Document {
+export interface CustomerDoc extends IMeasurementBase, mongoose.Document {
   email: string;
   password: string;
   verified: boolean;

@@ -29,6 +29,8 @@ it("signup customer successfully with valid email and password and set cookie", 
     })
     .expect(201);
 
+    console.log('signupCustomer', signupCustomer.text)
+
 
   const token = signupCustomer.get("Set-Cookie");
   const {id} = JSON.parse(signupCustomer.text);
@@ -37,7 +39,6 @@ it("signup customer successfully with valid email and password and set cookie", 
 
   const findUser = await Customer.findById(id);
 
-  console.log('findUser', findUser)
 
 //   expect(findUser.email).toEqual(true);
 });

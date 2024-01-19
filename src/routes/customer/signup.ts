@@ -4,6 +4,7 @@ import { CustomerBodyRequest } from "../../body-request/customer/Customer.body-r
 import { messages } from "../../messages";
 import { CustomerService } from "../../services/CustomerService";
 import jwt from "jsonwebtoken";
+import { customerDTO } from "../../dto/customer.dto";
 
 const router = express.Router();
 
@@ -40,7 +41,9 @@ router.post(
       req.session.customerJwt = customerJWT;
     }
 
-    res.status(201).send({ email: customer.email, id: customer.id });
+    const mappedCustomer = customerDTO(customer);
+
+    res.status(201).send(mappedCustomer);
   }
 );
 
