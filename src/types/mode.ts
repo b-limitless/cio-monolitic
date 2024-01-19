@@ -1,0 +1,1 @@
+export type TMode = 'shirt' | 'pant' | 'suit';
