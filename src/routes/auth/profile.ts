@@ -7,12 +7,12 @@ import {
 } from "@pasal/common";
 import logger from "@pasal/common/build/logger";
 import express, { Request, Response } from "express";
-import { UserProfileBodyRequest } from "../body-request/UserProfile.body-request";
-import { UserService } from "../services/User.service";
-import { UserProfileUpdatedPublisher } from "../events/publishers/profile-updated-publisher";
-import { Password } from "../utils/password";
+import { UserProfileBodyRequest } from "../../body-request/UserProfile.body-request";
+import { UserService } from "../../services/User.service";
+import { UserProfileUpdatedPublisher } from "../../events/publishers/profile-updated-publisher";
+import { Password } from "../../utils/password";
 import jwt from "jsonwebtoken";
-import { User, UserAttrs } from "../models/user";
+import { User, UserAttrs } from "../../models/user";
 
 const router = express.Router();
 

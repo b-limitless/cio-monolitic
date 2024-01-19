@@ -1,17 +1,17 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { validateRequest, BadRequestError } from "@pasal/common";
-import { User } from "../models/user";
-import { ResetPassword } from "../models/resetpassword";
+import { User } from "../../models/user";
+import { ResetPassword } from "../../models/resetpassword";
 import mongoose from "mongoose";
-import { Password } from "../utils/password";
-import { UserService } from "../services/User.service";
-import { PasswordService } from "../services/PasswordService";
+import { Password } from "../../utils/password";
+import { UserService } from "../../services/User.service";
+import { PasswordService } from "../../services/PasswordService";
 import logger from "@pasal/common/build/logger";
-import { readFile } from "../utils/readFile";
-import { sendMail } from "../mailar";
-import { mailerEmail } from "../config/email";
-import { messages } from "../messages";
+import { readFile } from "../../utils/readFile";
+import { sendMail } from "../../mailar";
+import { mailerEmail } from "../../config/email";
+import { messages } from "../../messages";
 const router = express.Router();
 
 router.post(

@@ -7,16 +7,16 @@ import {
 } from "@pasal/common";
 import logger from "@pasal/common/build/logger";
 import express, { Request, Response } from "express";
-import { TeamBodyRequest } from "../body-request/Team.body-request";
-import { mailerEmail } from "../config/email";
-import { sendMail } from "../mailar";
-import { messages } from "../messages";
-import { UserService } from "../services/User.service";
-import { readFile } from "../utils/readFile";
-import { checkPermissionAllSet } from "./utils";
-import { User } from "../models/user";
-import { limit } from "../config/email";
-import { Permission } from "../models/permissions";
+import { TeamBodyRequest } from "../../body-request/Team.body-request";
+import { mailerEmail } from "../../config/email";
+import { sendMail } from "../../mailar";
+import { messages } from "../../messages";
+import { UserService } from "../../services/User.service";
+import { readFile } from "../../utils/readFile";
+import { checkPermissionAllSet } from "../utils";
+import { User } from "../../models/user";
+import { limit } from "../../config/email";
+import { Permission } from "../../models/permissions";
 import mongoose from "mongoose";
 
 // Rememer you are updating full resource therefore use PUT method rather then PATCH

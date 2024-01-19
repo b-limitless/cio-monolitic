@@ -1,6 +1,6 @@
 import express, { Request, response, Response } from "express";
 import { body } from "express-validator";
-import { Permission } from "../models/permissions";
+import { Permission } from "../../models/permissions";
 import { validateRequest, BadRequestError, requireAuth } from "@pasal/common";
 
 const router = express.Router();

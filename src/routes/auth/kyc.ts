@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { requireAuth } from "@pasal/common";
-import { KYCBodyRequest } from "../body-request/KYC.body-request";
-import { KYCService } from "../services/KYC.service";
-import logger from "../logger";
+import { KYCBodyRequest } from "../../body-request/KYC.body-request";
+import { KYCService } from "../../services/KYC.service";
+import logger from "../../logger";
 
 const router = express.Router();
 

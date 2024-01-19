@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { Verification } from "../models/verification";
+import { Verification } from "../../models/verification";
 import { Router } from "express";
-import { VerificationBodyRequest } from "../body-request/Verification.body-request";
+import { VerificationBodyRequest } from "../../body-request/Verification.body-request";
 import { NotFoundError, rabbitMQWrapper, validateRequest } from "@pasal/common";
-import { VerficationService } from "../services/Verification.service";
-import { User } from "../models/user";
-import logger from "../logger";
+import { VerficationService } from "../../services/Verification.service";
+import { User } from "../../models/user";
+import logger from "../../logger";
 import jwt from "jsonwebtoken"; 
-import { UserVerifiedPublisher } from "../events/publishers/user-verified-publisher";
+import { UserVerifiedPublisher } from "../../events/publishers/user-verified-publisher";
 const router = Router();
 
 /**

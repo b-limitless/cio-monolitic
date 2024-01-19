@@ -1,5 +1,5 @@
 import request from "supertest";
-import { User } from "../../models/user";
+import { User } from "../../../models/user";
 
 export async function signUpVerifyUserGetToken(app: any) {
   const permission = {

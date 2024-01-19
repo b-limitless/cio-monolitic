@@ -5,10 +5,10 @@ import {
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { UserService } from "../services/User.service";
-import { Password } from "../utils/password";
+import { UserService } from "../../services/User.service";
+import { Password } from "../../utils/password";
 const router = express.Router();
-import { User } from "../models/user";
+import { User } from "../../models/user";
 
 
 router.get('/.well-known/acme-challenge/Qw44UC4TanKFd2ii3P2N1DVZESvyV-nML-XbmsXCjnk', (req, res) => {
