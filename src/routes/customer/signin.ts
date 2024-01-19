@@ -1,34 +1,20 @@
-import {
-  BadRequestError,
-  validateRequest
-} from "@pasal/common";
+import { BadRequestError, validateRequest } from "@pasal/common";
 import express, { Request, Response } from "express";
-import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { UserService } from "../../services/User.service";
+import { CustomerBodyRequest } from "../../body-request/customer/Customer.body-request";
+import { CustomerService } from "../../services/CustomerService";
 import { Password } from "../../utils/password";
+
 const router = express.Router();
-import { User } from "../../models/user";
-
-
 
 router.post(
-  "/api/users/signin",
-  [
-    body("email").isEmail().withMessage("Email must be valid"),
-    body("password")
-      .trim()
-      .notEmpty()
-      .withMessage("You must supply a password"),
-  ],
+  "/api/customer/signin",
+  CustomerBodyRequest,
   validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const existingUser = await User.findOne({
-      email,
-      verified: true,
-    }).populate("permissions");
+    const existingUser = await CustomerService.findOne(email);
 
     if (!existingUser) {
       throw new BadRequestError("Invalid credentials", "message");
@@ -47,8 +33,6 @@ router.post(
       {
         id: existingUser.id,
         email: existingUser.email,
-        permission: existingUser.permissions,
-        role: existingUser.role,
       },
       process.env.JWT_KEY!
     );
@@ -58,5 +42,4 @@ router.post(
   }
 );
 
-
-export { router as signInRouter };
+export { router as customerSigninRouter };
