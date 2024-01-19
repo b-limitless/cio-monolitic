@@ -6,7 +6,7 @@ import logger from "@pasal/common/build/logger";
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import { febricBodyRequest } from "../../body-request/FebricBodyRequest";
-import { FebricService } from "../../services/FebricService";
+import { FebricService } from "../../services/Febric.Service";
 
 const router = express.Router();
 

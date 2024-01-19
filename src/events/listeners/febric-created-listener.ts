@@ -1,6 +1,6 @@
 import { FebricCreatedEvent, Listener, Subjects } from "@pasal/common";
 import logger from "@pasal/common/build/logger";
-import { FebricService } from "../../services/FebricService";
+import { FebricService } from "../../services/Febric.Service";
 
 export class FebricCreatedListener extends Listener<FebricCreatedEvent> {
   subject: Subjects.FebricCreated = Subjects.FebricCreated;

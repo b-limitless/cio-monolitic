@@ -4,7 +4,7 @@ import {
 import logger from "@pasal/common/build/logger";
 import express, { Request, Response } from "express";
 import { deleteMedia } from "../../common/uploadFileToCloudinary";
-import { FebricService } from "../../services/FebricService";
+import { FebricService } from "../../services/Febric.Service";
 
 const router = express.Router();
 

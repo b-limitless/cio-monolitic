@@ -1,7 +1,7 @@
 import { FebricUpdatedEvent, Listener, Subjects } from "@pasal/common";
 import logger from "@pasal/common/build/logger";
 import mongoose from "mongoose";
-import { FebricService } from "../../services/FebricService";
+import { FebricService } from "../../services/Febric.Service";
 
 export class FebricUpdatedListener extends Listener<FebricUpdatedEvent> {
   subject: Subjects.FebricUpdated = Subjects.FebricUpdated;

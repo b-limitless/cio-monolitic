@@ -2,7 +2,7 @@ import { BadRequestError, validateRequest } from "@pasal/common";
 import express, { Request, Response } from "express";
 import { CustomerBodyRequest } from "../../body-request/customer/Customer.body-request";
 import { messages } from "../../messages";
-import { CustomerService } from "../../services/CustomerService";
+import { CustomerService } from "../../services/Customer.Service";
 import jwt from "jsonwebtoken";
 import { customerDTO } from "../../dto/customer.dto";
 

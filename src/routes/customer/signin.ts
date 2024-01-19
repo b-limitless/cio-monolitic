@@ -2,7 +2,7 @@ import { BadRequestError, validateRequest } from "@pasal/common";
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { CustomerBodyRequest } from "../../body-request/customer/Customer.body-request";
-import { CustomerService } from "../../services/CustomerService";
+import { CustomerService } from "../../services/Customer.Service";
 import { Password } from "../../utils/password";
 
 const router = express.Router();

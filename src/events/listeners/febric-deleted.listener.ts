@@ -1,6 +1,6 @@
 import { FebricDeletedEvent, Listener, Subjects } from "@pasal/common";
 import { Channel } from "amqplib";
-import { FebricService } from "../../services/FebricService";
+import { FebricService } from "../../services/Febric.Service";
 import mongoose from "mongoose";
 import logger from "../../logger";
 

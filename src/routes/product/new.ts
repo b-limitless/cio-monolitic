@@ -15,7 +15,7 @@ import mongoose from "mongoose";
 import { febricBodyRequest } from "../../body-request/FebricBodyRequest";
 
 import { Febric } from "../../models/febric";
-import { FebricService } from "../../services/FebricService";
+import { FebricService } from "../../services/Febric.Service";
 import { febrics } from "./dummyFebric";
 
 
