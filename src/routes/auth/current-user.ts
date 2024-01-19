@@ -1,9 +1,5 @@
+import { currentUser, requireAuth } from '@pasal/common';
 import express from 'express';
-import {currentUser, requireAuth} from '@pasal/common';
-import { Request, Response } from 'express';
-import mongoose from 'mongoose';
-import { User } from '../../models/user';
-import logger from '../../logger';
 
 
 const router = express.Router();

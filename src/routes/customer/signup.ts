@@ -33,9 +33,12 @@ router.post(
       process.env.JWT_KEY!
     );
 
-    req.session = {
-      customerJwt: customerJWT,
-    };
+    // req.session = {
+    //   customerJwt: customerJWT,
+    // };
+    if(req.session) {
+      req.session.customerJwt = customerJWT;
+    }
 
     res.status(201).send({ email: customer.email, id: customer.id });
   }

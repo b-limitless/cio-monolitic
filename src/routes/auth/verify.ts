@@ -53,9 +53,9 @@ async(req:Request, res:Response) => {
             process.env.JWT_KEY!
           );
         
-          req.session = {
-            jwt: userJWT,
-        };
+          if(req.session) {
+            req.session.jwt = userJWT ;
+          }   
 
         // Using token in header for the testing purpose
         

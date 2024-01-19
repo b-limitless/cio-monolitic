@@ -37,7 +37,10 @@ router.post(
       process.env.JWT_KEY!
     );
 
-    req.session = { customerJwt: userJWT };
+    if(req.session) {
+      req.session.customerJwt = userJWT;
+    }
+    // req.session = { customerJwt: userJWT };
     res.status(201).json(existingUser);
   }
 );
