@@ -6,7 +6,7 @@ import { ResetPassword } from "../../models/resetpassword";
 import mongoose from "mongoose";
 import { Password } from "../../utils/password";
 import { UserService } from "../../services/User.service";
-import { PasswordService } from "../../services/PasswordService";
+import { PasswordService } from "../../services/Password.Service";
 import logger from "@pasal/common/build/logger";
 import { readFile } from "../../utils/readFile";
 import { sendMail } from "../../mailar";

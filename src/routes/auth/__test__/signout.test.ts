@@ -3,7 +3,7 @@ import { app } from "../../../app";
 import { User } from "../../../models/user";
 
 const permission = {
-  name: 'globalId',
+  name: "globalId",
   cat: "ifa",
   guard_name: "sales",
   role: "sales executive",
@@ -17,14 +17,13 @@ beforeEach(async () => {
     .send(permission)
     .expect(200);
 
-  const {permission: {id}} = JSON.parse(res.text);
+  const {
+    permission: { id },
+  } = JSON.parse(res.text);
   globalId = id;
 });
 
-
 it("create user and clear the session", async () => {
-  
-
   try {
     const res = await request(app)
       .post("/api/users/signup")
@@ -59,11 +58,9 @@ it("create user and clear the session", async () => {
   } catch (err: any) {
     console.log("err", err.message);
   }
- 
-  const logout = await request(app)
-  .get("/api/users/signout")
-  .expect(200);
+
+  const logout = await request(app).get("/api/users/signout").expect(200);
   expect(logout.get("Set-Cookie")[0]).toEqual(
-    "express:sess=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=pasal.dev; httponly"
+    "express:sess=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; httponly"
   );
 });

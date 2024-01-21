@@ -8,7 +8,7 @@ export interface AccentAttrs {
   febric:string;
   meshName: string[];
 }
-interface AccentDoc extends mongoose.Document {
+export interface AccentDoc extends mongoose.Document {
   type: ProductType;
   partName: ProductPartNames;
   price: number;
@@ -25,7 +25,7 @@ const AccentSchema = new mongoose.Schema(
     partName: { type: String, enum: Object.values(ProductPartNames) },
     price: { type: Number, required: true },
     febric: { type: String, required: true },
-    meshName: { type: [String], required: true, default: [] },
+    meshName: { type: [String], required: true },
     
   },
   {

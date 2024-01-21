@@ -23,6 +23,8 @@ import { showProductRouter } from "./routes/product/show";
 import { updateFebricRouter } from "./routes/product/update";
 import { uploadeRouter } from "./routes/product/upload";
 import { currentUserRouter } from "./routes/auth/current-user";
+import { createModelRouter } from "./routes/model/new";
+import { createAccentRouter } from "./routes/accent/new";
 
 
 
@@ -71,6 +73,9 @@ app.use(uploadeRouter);
 app.use(deleteFebricRouter);
 app.use(customerSignupRouter);
 app.use(customerSigninRouter);
+app.use(createModelRouter);
+app.use(createAccentRouter);
+
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
 });
