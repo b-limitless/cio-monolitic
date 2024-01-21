@@ -14,10 +14,5 @@ it("throws error while creating accent without the requied data ", async () => {
     meshName: ["bold", "sdfsfd"],
   };
   
-  try {
-    const res = await request(app).post("/api/accent").send(data).expect(201);
-  } catch (err:any)
- {
-  console.log('err', err.reponse.body)
- } 
+  await request(app).post("/api/accent").send(data).expect(201);
 });
