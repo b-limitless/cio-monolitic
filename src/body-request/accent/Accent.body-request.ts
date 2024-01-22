@@ -1,20 +1,10 @@
 import { body } from 'express-validator';
-import { ProductType } from '../../models/types';
-
-
+import { validateProductType } from '../common';
 // type: ProductType;
 //   partName: ProductPartNames;
 //   price: number;
 //   febric:string;
 //   meshName: string[];
-
-const validateProductType = (value) => {
-  console.log(value,Object.values(ProductType) )
-  if (!Object.values(ProductType).includes(value)) {
-    throw new Error('Invalid product type');
-  }
-  return true;
-};
 
 
 const validedStringArray = (value) => {

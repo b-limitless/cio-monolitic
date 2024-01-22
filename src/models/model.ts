@@ -5,14 +5,14 @@ export interface ModelAttrs {
   type: ProductType;
   name: string;
   title: string;
-  model: string;
+  model: any;
   price: number;
 }
 export interface ModelDoc extends mongoose.Document {
   type: ProductType;
   name: string;
   title: string;
-  model: string;
+  model: any;
   price: number;
 }
 interface ModelModel extends mongoose.Model<ModelDoc> {

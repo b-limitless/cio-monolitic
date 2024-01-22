@@ -45,7 +45,7 @@ router.post(
 
     const userJWT = jwt.sign(
       {
-        id: existingUser.id,
+        id: existingUser.id, 
         email: existingUser.email,
         permission: existingUser.permissions,
         role: existingUser.role,

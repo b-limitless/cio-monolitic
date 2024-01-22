@@ -62,7 +62,6 @@ interface FebricDoc extends mongoose.Document {
   originalImageUrl:string;
   version: number;
   compositions: any[]
-
 }
 
 interface FebricModel extends mongoose.Model<FebricDoc> {

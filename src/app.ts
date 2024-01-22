@@ -1,4 +1,5 @@
 import { NotFoundError, currentCustomer, currentUser, errorHandler } from "@pasal/common";
+import { currentCartSession } from "./common/current-cart-session";
 import bodyParser, { json } from 'body-parser';
 import cookieSession from "cookie-session";
 import cors from "cors";
@@ -25,6 +26,7 @@ import { uploadeRouter } from "./routes/product/upload";
 import { currentUserRouter } from "./routes/auth/current-user";
 import { createModelRouter } from "./routes/model/new";
 import { createAccentRouter } from "./routes/accent/new";
+import { CreateCartRouter } from "./routes/cart/new";
 
 
 
@@ -54,6 +56,7 @@ app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 app.use(currentUser);
 app.use(currentCustomer);
+app.use(currentCartSession);
 app.use(currentCustomerRouter);
 app.use(currentUserRouter);
 app.use(signInRouter);
@@ -75,6 +78,7 @@ app.use(customerSignupRouter);
 app.use(customerSigninRouter);
 app.use(createModelRouter);
 app.use(createAccentRouter);
+app.use(CreateCartRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
