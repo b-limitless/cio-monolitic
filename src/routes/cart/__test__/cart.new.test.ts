@@ -81,7 +81,7 @@ it('successfully creates cart', async() => {
 
     const {sessionId: sessionIdSecond} = JSON.parse(response1.text);
 
-    expect(sessionIdSecond).toEqual(sessionIdSecond);
+    expect(sessionIdSecond).toEqual(sessionId);
 
 });
 
