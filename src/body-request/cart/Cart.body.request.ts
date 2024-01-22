@@ -35,7 +35,7 @@ export const CartBodyRequest = [
     body('qty').isInt().withMessage("Qty must be an integer"),
     body('discount').optional().isNumeric().withMessage("Discount must be a number"),  // Optional numeric field
     body('availability').isString().withMessage("Availability must be a string"),
-    body('id').isInt().withMessage("ID must be an integer"),
+    // body('id').isInt().withMessage("ID must be an integer"),
     body('deliveryTime').optional().isString().withMessage("Delivery Time must be a string or null"),  // Optional string field that can be null
     body('orderId').optional().isString().withMessage("Order ID must be a string or null"),  // Optional string field that can be null
 ];

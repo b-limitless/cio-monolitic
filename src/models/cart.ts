@@ -11,7 +11,7 @@ import { ModelKeys, TModelRow } from "../types/model";
 export type IModelAction = Record<ModelKeys, TModelRow>;
 
 export interface CartAttrs {
-  customerId: mongoose.Schema.Types.ObjectId;
+  customerId: mongoose.Schema.Types.ObjectId | null;
   originalImageUrl: string;
   thumbnailImageUrl: string;
   status: ECartStatus;
@@ -22,12 +22,13 @@ export interface CartAttrs {
   qty: number;
   discount?: number;
   availability: String;
-  id: number;
   deliveryTime?: string | null;
   orderId: string | null;
+  sessionId:string;
 }
 
-interface CartDoc extends mongoose.Document {}
+export interface CartDoc extends mongoose.Document {}
+
 interface CartModel extends mongoose.Model<CartDoc> {
   build(attrs: CartAttrs): CartDoc;
 }
@@ -36,7 +37,7 @@ const CartSchema = new mongoose.Schema(
     customerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",
-      required: true,
+      required: false,
     },
     originalImageUrl: { type: String, required: true },
     thumbnailImageUrl: { type: String, required: true },
@@ -52,10 +53,10 @@ const CartSchema = new mongoose.Schema(
     subTotal: { type: Number, required: true },
     qty: { type: Number, required: true },
     discount: { type: Number },
-    availability: { type: String, required: true },
-    id: { type: Number, required: true },
+    availability: { type: String },
     deliveryTime: { type: String },
     orderId: { type: String },
+    sessionId: {type:String}
   },
   {
     toJSON: {
