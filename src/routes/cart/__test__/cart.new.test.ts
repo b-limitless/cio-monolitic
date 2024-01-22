@@ -74,9 +74,15 @@ it('successfully creates cart', async() => {
 
     // console.log('response', response)
 
-    const responseData = JSON.parse(response.text);
+    const {sessionId} = JSON.parse(response.text);
 
-    console.log('respnose data', responseData)
+    // Add again the product in that case session id will be same 
+    const response1 = await request(app).post('/api/cart').send(cartData).expect(200);
+
+    const {sessionId: sessionIdSecond} = JSON.parse(response1.text);
+
+    expect(sessionIdSecond).toEqual(sessionIdSecond);
+
 });
 
 it.todo(`Create validation for data structure which is passed to cart, such as febric, model
