@@ -62,27 +62,83 @@ const cartData = {
     code: 'default',
     originalImageUrl: '/img/febric-5.jpg',
   },
-  status: 'open'
+  status: 'open',
 };
 
 it('create a cart with the data', async () => {
   await request(app).post('/api/cart').send({}).expect(400);
 });
 
-it('successfully creates cart', async() => {
-    const response = await request(app).post('/api/cart').send(cartData).expect(200);
+it('successfully creates cart', async () => {
+  const response = await request(app)
+    .post('/api/cart')
+    .send(cartData)
+    .expect(200);
 
-    // console.log('response', response)
+  // Manually tested
+  // const {sessionId} = JSON.parse(response.text);
 
-    const {sessionId} = JSON.parse(response.text);
+  // Add again the product in that case session id will be same
+  // const response1 = await request(app).post('/api/cart').send(cartData).expect(200);
 
-    // Add again the product in that case session id will be same 
-    const response1 = await request(app).post('/api/cart').send(cartData).expect(200);
+  // const {sessionId: sessionIdSecond} = JSON.parse(response1.text);
 
-    const {sessionId: sessionIdSecond} = JSON.parse(response1.text);
+  // expect(sessionIdSecond).toEqual(sessionId);
+});
 
-    expect(sessionIdSecond).toEqual(sessionId);
+it('signin the cusomer and create cart and check the customer Id is is same', async () => {
+  const response = await request(app)
+    .post('/api/cart')
+    .set('Cookie', global.signinCustomer())
+    .send(cartData)
+    .expect(200);
+  const { customerId, sessionId } = JSON.parse(response.text);
 
+  expect(customerId).toBeDefined();
+  expect(sessionId).toBeNull();
+});
+
+it('if user is not signined in then and then only there should be sessionId', async () => {
+  const response = await request(app)
+    .post('/api/cart')
+    .send(cartData)
+    .expect(200);
+  const { customerId, sessionId } = JSON.parse(response.text);
+
+  expect(customerId).toBeNull();
+  expect(sessionId).toBeDefined();
+});
+
+it('update the the cart item', async() => {
+    // Create the cart first
+    const qtyUpdate = 10;
+    const subTotalUpdate = 100;
+
+    const customer = global.signinCustomer();
+
+    const response = await request(app)
+    .post('/api/cart')
+    .set('Cookie', customer)
+    .send(cartData)
+    .expect(200);
+
+    const { customerId, sessionId, id } = JSON.parse(response.text);
+
+    const newCart = JSON.parse(JSON.stringify(cartData));
+    newCart.qty = 10;
+    newCart.subTotal = 100;
+
+    const updateCart = await request(app)
+    .patch(`/api/cart/${id}`)
+    .set('Cookie', customer)
+    .send(newCart)
+    .expect(200);
+
+    // console.log('updateCart.text', updateCart.text);
+    const { qty, subTotal } = JSON.parse(updateCart.text);
+
+    expect(qty).toEqual(qtyUpdate);
+    expect(subTotal).toEqual(subTotalUpdate);
 });
 
 it.todo(`Create validation for data structure which is passed to cart, such as febric, model

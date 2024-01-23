@@ -26,7 +26,8 @@ import { uploadeRouter } from "./routes/product/upload";
 import { currentUserRouter } from "./routes/auth/current-user";
 import { createModelRouter } from "./routes/model/new";
 import { createAccentRouter } from "./routes/accent/new";
-import { CreateCartRouter } from "./routes/cart/new";
+import { updateCartRouter } from "./routes/cart/update";
+import { createCartRouter } from "./routes/cart/new";
 
 
 
@@ -78,7 +79,8 @@ app.use(customerSignupRouter);
 app.use(customerSigninRouter);
 app.use(createModelRouter);
 app.use(createAccentRouter);
-app.use(CreateCartRouter);
+app.use(createCartRouter);
+app.use(updateCartRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");

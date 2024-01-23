@@ -30,6 +30,16 @@ export class CartServiceLocal {
     }
   }
 
+  async findByWhereClauseAndUpdate(filter:any, update:any, options:any) {
+    try {
+      const updateCart = await Cart.findOneAndUpdate(filter, update, options)
+      return updateCart;
+    } catch(err:any) { 
+      logger.log("info", `Can not find and update ${err}`);
+      throw new Error(`Could not update the document ${err}`);
+    }
+  }
+
   async findById(id: string) {
     try {
       const find = await Cart.findByIdAndUpdate(id);

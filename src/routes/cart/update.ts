@@ -12,18 +12,19 @@ import { CartBodyRequest } from "../../body-request/cart/Cart.body.request";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { CartService } from "../../services/Cart.Service";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
-router.post(
+router.patch(
   "/api/cart/:id",
   CartBodyRequest,
   validateRequest,
   // requireCustomerAuth,
   async (req: Request, res: Response) => {
-    const customerId = req?.currentCustomer?.id; // or simply say clientCartSession object
+    const customerId = new mongoose.Types.ObjectId(req?.currentCustomer?.id) ?? null; // or simply say clientCartSession object
     const cartSession = req?.currentCartSession?.id;
-    const {id} = req.params;
+    const id = new mongoose.Types.ObjectId(req.params.id);
 
     const {
       originalImageUrl,
@@ -37,16 +38,33 @@ router.post(
       discount,
       availability,
       deliveryTime,
-      orderId,
     } = req.body;
 
-    const filter = {customerId, sessionId: cartSession, id: id};
+    //customerId, sessionId: cartSession, 
+    const filter = {customerId,  _id: id, sessionId: cartSession};
+
+    console.log('filter = {customerId,  _id: id};', {customerId,  _id: id})
 
     try {
-    //   const cart = await CartService.findByWhereClauseAndUpdate();
+      const cart = await CartService.findByWhereClauseAndUpdate(filter, 
+         {
+            originalImageUrl,
+            thumbnailImageUrl,
+            model,
+            febric,
+            modelType,
+            subTotal,
+            qty,
+            discount,
+            availability,
+            deliveryTime,
+        }, 
+         {new: true});
+
+         console.log('cart', cart)
      
     //   res.json(cart);
-      return;
+      res.json(cart);
 
     } catch (err: any) {
       throw new Error(err);
@@ -55,4 +73,4 @@ router.post(
   }
 );
 
-export { router as CreateCartRouter };
+export { router as updateCartRouter };

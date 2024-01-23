@@ -70,7 +70,7 @@ router.post(
         availability,
         deliveryTime,
         orderId,
-        sessionId: cartSession ?? id
+        sessionId: customerId ? null : cartSession ?? id
       } as CartAttrs);
      
       res.json(cart);
@@ -83,4 +83,4 @@ router.post(
   }
 );
 
-export { router as CreateCartRouter };
+export { router as createCartRouter };
