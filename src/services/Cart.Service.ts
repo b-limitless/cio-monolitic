@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { FilterQuery } from "mongoose";
 import logger from "../logger";
 import { Cart, CartAttrs } from "../models/cart";
 
@@ -40,7 +40,7 @@ export class CartServiceLocal {
     }
   }
 
-  async findById(id: string) {
+  async findById(id: mongoose.Types.ObjectId) {
     try {
       const find = await Cart.findByIdAndUpdate(id);
       return find;
@@ -49,10 +49,19 @@ export class CartServiceLocal {
       throw new Error(`Can not find and update`);
     }
   }
-
-  async findByWhereCluse(data: any) {
+ 
+  async findByWhereCluse(data: FilterQuery<Partial<CartAttrs>>) {
     try {
       const find = await Cart.findOne({ ...data });
+      return find;
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  }
+
+  async deleteOneByWhereClause(data: FilterQuery<Partial<CartAttrs>>) {
+    try {
+      const find = await Cart.deleteOne({ ...data });
       return find;
     } catch (err: any) {
       throw new Error(err.message);

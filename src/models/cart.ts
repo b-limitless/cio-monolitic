@@ -24,7 +24,7 @@ export interface CartAttrs {
   availability: String;
   deliveryTime?: string | null;
   orderId: string | null;
-  sessionId:string;
+  sessionId:string | null;
 }
 
 export interface CartDoc extends mongoose.Document {}

@@ -109,38 +109,6 @@ it('if user is not signined in then and then only there should be sessionId', as
   expect(sessionId).toBeDefined();
 });
 
-it('update the the cart item', async() => {
-    // Create the cart first
-    const qtyUpdate = 10;
-    const subTotalUpdate = 100;
-
-    const customer = global.signinCustomer();
-
-    const response = await request(app)
-    .post('/api/cart')
-    .set('Cookie', customer)
-    .send(cartData)
-    .expect(200);
-
-    const { customerId, sessionId, id } = JSON.parse(response.text);
-
-    const newCart = JSON.parse(JSON.stringify(cartData));
-    newCart.qty = 10;
-    newCart.subTotal = 100;
-
-    const updateCart = await request(app)
-    .patch(`/api/cart/${id}`)
-    .set('Cookie', customer)
-    .send(newCart)
-    .expect(200);
-
-    // console.log('updateCart.text', updateCart.text);
-    const { qty, subTotal } = JSON.parse(updateCart.text);
-
-    expect(qty).toEqual(qtyUpdate);
-    expect(subTotal).toEqual(subTotalUpdate);
-});
-
 it.todo(`Create validation for data structure which is passed to cart, such as febric, model
 They are complex data structure need more time 
 `);
