@@ -62,6 +62,7 @@ export class CartServiceLocal {
   async deleteOneByWhereClause(data: FilterQuery<Partial<CartAttrs>>) {
     try {
       const find = await Cart.deleteOne({ ...data });
+      console.log('delete count', find.deletedCount)
       return find;
     } catch (err: any) {
       throw new Error(err.message);

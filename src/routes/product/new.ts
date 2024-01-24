@@ -17,6 +17,7 @@ import { febricBodyRequest } from "../../body-request/Febric.body-request";
 import { Febric } from "../../models/febric";
 import { FebricService } from "../../services/Febric.Service";
 import { febrics } from "./dummyFebric";
+import { dummyFebric1 } from "./dummyFebric-1";
 
 
 const router = express.Router();
@@ -117,7 +118,7 @@ router.post(
 
 router.get('/api/products/insert', async(req: Request, res:Response) => {
   try {
-    await Febric.insertMany(febrics);
+    await Febric.insertMany(dummyFebric1);
     res.send('data inserted sucessfully')
   } catch(err:any) {
     throw new Error(`Can not insert data ${err}`);

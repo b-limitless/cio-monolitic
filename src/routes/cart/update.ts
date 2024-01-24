@@ -43,8 +43,6 @@ router.patch(
     //customerId, sessionId: cartSession, 
     const filter = {customerId,  _id: id, sessionId: cartSession};
 
-    console.log('filter = {customerId,  _id: id};', {customerId,  _id: id})
-
     try {
       const cart = await CartService.findByWhereClauseAndUpdate(filter, 
          {
@@ -60,10 +58,6 @@ router.patch(
             deliveryTime,
         }, 
          {new: true});
-
-         console.log('cart', cart)
-     
-    //   res.json(cart);
       res.json(cart);
 
     } catch (err: any) {

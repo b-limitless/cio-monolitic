@@ -31,7 +31,7 @@ router.post(
     const id = uuidv4();
     if (!customerId && !cartSession) {
       token = jwt.sign({ id }, process.env.JWT_KEY!);
-      console.log("Setting up token instially");
+      
 
       if (req.session) {
         req.session.cart = token;
