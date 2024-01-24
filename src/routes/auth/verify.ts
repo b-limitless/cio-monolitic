@@ -69,12 +69,12 @@ async(req:Request, res:Response) => {
             logger.log("error", "Could not pulish the verify user event")
         }
         logger.log("info", `User successfully verified`);
-        res.send(user);
+        res.json(user);
         return;
     } catch(err) {
         logger.log("error", "Unable to update the user ")
     }
-    res.send({});
+    res.json({});
 });
 
 
