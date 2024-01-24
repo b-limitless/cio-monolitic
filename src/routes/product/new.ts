@@ -9,7 +9,6 @@ import {
   requireAuth,
   validateRequest
 } from "@pasal/common";
-import logger from "@pasal/common/build/logger";
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import { febricBodyRequest } from "../../body-request/Febric.body-request";
@@ -18,6 +17,7 @@ import { Febric } from "../../models/febric";
 import { FebricService } from "../../services/Febric.Service";
 import { febrics } from "./dummyFebric";
 import { dummyFebric1 } from "./dummyFebric-1";
+import logger from "../../logger";
 
 
 const router = express.Router();

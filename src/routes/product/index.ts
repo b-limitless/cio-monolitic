@@ -14,7 +14,7 @@ router.get("/api/products/v1", async(req: Request, res:Response) => {
         page = page - 1;
     }
     
-    const filters = JSON.parse(req.query.filters as string);
+    const filters = req?.query?.filters ? JSON.parse(req.query.filters as string) : {};
 
     const filterQuery:any = {};
 
@@ -27,7 +27,8 @@ router.get("/api/products/v1", async(req: Request, res:Response) => {
    
     const affectedRows = await Febric.countDocuments(filterQuery);
     const febrics = await Febric.find(filterQuery, {}).skip(Number(page) * limit).limit(limit);
-    res.send({febrics, affectedRows});
+    
+    res.json({febrics, affectedRows, limit});
 });
 
 export { router as indexProductRouter };

@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
-interface FebricAttrs {
-  userId: mongoose.Schema.Types.ObjectId;
+export interface FebricAttrs {
+  // userId: mongoose.Schema.Types.ObjectId;
   title: string;
   price: number;
   deliveryTime: string;
