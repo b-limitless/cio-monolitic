@@ -10,7 +10,7 @@ export interface StyleAttrs {
   label: string;
   model: string;
 }
-interface StyleDoc extends mongoose.Document {
+export interface StyleDoc extends mongoose.Document {
   type: ProductType;
   partName: ProductPartNames;
   price: number;

@@ -29,6 +29,7 @@ import { createAccentRouter } from "./routes/accent/new";
 import { updateCartRouter } from "./routes/cart/update";
 import { createCartRouter } from "./routes/cart/new";
 import { deleteCartRouter } from "./routes/cart/delete";
+import { createStyleRouter } from "./routes/style/new";
 
 
 
@@ -83,6 +84,7 @@ app.use(createAccentRouter);
 app.use(createCartRouter);
 app.use(updateCartRouter);
 app.use(deleteCartRouter);
+app.use(createStyleRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
