@@ -59,6 +59,15 @@ export class CartServiceLocal {
     }
   }
 
+  async find(data: FilterQuery<Partial<CartAttrs>>) {
+    try {
+      const find = await Cart.find({...data});
+      return find;
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  }
+
   async deleteOneByWhereClause(data: FilterQuery<Partial<CartAttrs>>) {
     try {
       const find = await Cart.deleteOne({ ...data });

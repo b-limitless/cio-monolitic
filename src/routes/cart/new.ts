@@ -12,6 +12,7 @@ import { CartBodyRequest } from "../../body-request/cart/Cart.body.request";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { CartService } from "../../services/Cart.Service";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router.post(
   validateRequest,
   // requireCustomerAuth,
   async (req: Request, res: Response) => {
-    const customerId = req?.currentCustomer?.id; // or simply say clientCartSession object
+    const customerId = req?.currentCustomer?.id ? new mongoose.Types.ObjectId(req.currentCustomer.id) : null; // or simply say clientCartSession object
     const cartSession = req?.currentCartSession?.id;
 
     // If both customer session and cart session is not set

@@ -45,6 +45,7 @@ it('if user is not signined in then and then only there should be sessionId', as
 
   expect(customerId).toBeNull();
   expect(sessionId).toBeDefined();
+  
 });
 
 it.todo(`Create validation for data structure which is passed to cart, such as febric, model

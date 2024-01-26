@@ -30,6 +30,8 @@ import { updateCartRouter } from "./routes/cart/update";
 import { createCartRouter } from "./routes/cart/new";
 import { deleteCartRouter } from "./routes/cart/delete";
 import { createStyleRouter } from "./routes/style/new";
+import { getCartRouter } from "./routes/cart";
+import { frontEndHosts } from "./config/hots";
 
 
 
@@ -41,7 +43,11 @@ const isProd = () => {
 }
 
 app.use(
-  cors({}));
+  cors({
+    credentials: true,
+    origin: frontEndHosts
+  })
+);
 
 app.set("trust proxy", true);
 app.use(json());
@@ -85,6 +91,7 @@ app.use(createCartRouter);
 app.use(updateCartRouter);
 app.use(deleteCartRouter);
 app.use(createStyleRouter);
+app.use(getCartRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");

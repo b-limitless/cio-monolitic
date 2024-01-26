@@ -8,13 +8,13 @@ const validateFebric = (value: TFebric) => {
     }
   
     // Validate specific properties based on your requirements
-    if (typeof value.title !== 'string' || value.title.trim() === '') {
-      throw new Error('Invalid Fabric Title');
-    }
+    // if (typeof value.title !== 'string' || value.title.trim() === '') {
+    //   throw new Error('Invalid Fabric Title');
+    // }
   
-    if (typeof value.price !== 'number' || isNaN(value.price) || value.price <= 0) {
-      throw new Error('Invalid Fabric Price');
-    }
+    // if (typeof value.price !== 'number' || isNaN(value.price) || value.price <= 0) {
+    //   throw new Error('Invalid Fabric Price');
+    // }
   
     // Add more property validations as needed
   

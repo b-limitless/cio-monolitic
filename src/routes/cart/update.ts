@@ -22,7 +22,7 @@ router.patch(
   validateRequest,
   // requireCustomerAuth,
   async (req: Request, res: Response) => {
-    const customerId = new mongoose.Types.ObjectId(req?.currentCustomer?.id) ?? null; // or simply say clientCartSession object
+    const customerId = req?.currentCustomer?.id ? new mongoose.Types.ObjectId(req.currentCustomer.id) : null; // or simply say clientCartSession object
     const cartSession = req?.currentCartSession?.id;
     const id = new mongoose.Types.ObjectId(req.params.id);
 

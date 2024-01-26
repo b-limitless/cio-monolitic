@@ -59,6 +59,6 @@ export class ModelServiceLocal {
     }
 }
 
-const ModelService = new ModelServiceLocal();
+const StyleService = new ModelServiceLocal();
 
-export { ModelService };
+export { StyleService };

@@ -7,7 +7,7 @@ import { CartService } from '../../services/Cart.Service';
 const router = express.Router();
 
 router.delete('/api/cart/:id', async(req:Request, res:Response) => {
-    const customerId = new mongoose.Types.ObjectId(req?.currentCustomer?.id) ?? null; // or simply say clientCartSession object
+    const customerId = req?.currentCustomer?.id ? new mongoose.Types.ObjectId(req.currentCustomer.id) : null; // or simply say clientCartSession object
     const sessionId = req?.currentCartSession?.id;
     const id = new mongoose.Types.ObjectId(req.params.id);
     

@@ -1,0 +1,1 @@
+export const frontEndHosts = ['http://localhost:3000'];

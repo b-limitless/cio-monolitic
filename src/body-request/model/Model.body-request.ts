@@ -18,7 +18,7 @@ export const ModelBodyRequest = [
     .trim()
     .isLength({ min: 2, max: 20 })
     .withMessage('Password must be between 4 to 20 characters'),
-  body('model')
+  body('modelURL')
     .trim()
     .isLength({ min: 2, max: 20 })
     .withMessage('Password must be between 4 to 20 characters'),

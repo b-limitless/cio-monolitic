@@ -12,11 +12,10 @@ export const StyleBodyValidator = [
 
   body("price").isNumeric().withMessage("Price must be a numeric value"),
 
-  body("title").isString().withMessage("Title must be a string"),
-
   body("code").isString().withMessage("Code must be a string"),
 
   body("label").isString().withMessage("Label must be a string"),
 
-  body("model").isString().withMessage("Model must be a string"),
+  body("modelURL").isString().withMessage("Model must be a string"),
+  body("mediaUrl").isString().withMessage("Media URL is required"),
 ];
