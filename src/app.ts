@@ -45,20 +45,31 @@ const isProd = () => {
 app.use(
   cors({
     credentials: true,
-    origin: frontEndHosts
+    origin: 'http://localhost:3000', 
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   })
 );
 
 app.set("trust proxy", true);
 app.use(json());
+
+const cookieSessionOptions:any = {};
+
+if(isProd()) {
+  cookieSessionOptions.sameSite = 'strict';
+  cookieSessionOptions.domain= process.env.HOST_NAME
+}
+
 app.use(
   cookieSession({
     signed: isProd(),
-    secure: isProd(),
-    // domain: process.env.domain || 'pasal.dev',
-    maxAge: 3600000 // 10000 * 60 minutes * 60 seconds
+    secure: false, //isProd(),
+    httpOnly: true,
+    maxAge: 3600000, // 10000 * 60 minutes * 60 seconds
+    ...cookieSessionOptions
   })
 );
+
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 

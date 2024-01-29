@@ -22,7 +22,9 @@ router.post(
   validateRequest,
   // requireCustomerAuth,
   async (req: Request, res: Response) => {
-    const customerId = req?.currentCustomer?.id ? new mongoose.Types.ObjectId(req.currentCustomer.id) : null; // or simply say clientCartSession object
+    const customerId = req?.currentCustomer?.id
+      ? new mongoose.Types.ObjectId(req.currentCustomer.id)
+      : null; // or simply say clientCartSession object
     const cartSession = req?.currentCartSession?.id;
 
     // If both customer session and cart session is not set
@@ -30,14 +32,10 @@ router.post(
     // Based on the client
     let token: any;
     const id = uuidv4();
-    if (!customerId && !cartSession) {
-      token = jwt.sign({ id }, process.env.JWT_KEY!);
-      
 
-      if (req.session) {
-        req.session.cart = token;
-      }
-    }
+    // if (req.session) {
+    //   req.session.customerJwt = userJWT;
+    // }
 
     // Distructure everything from the cart
     // const {}
@@ -71,16 +69,22 @@ router.post(
         availability,
         deliveryTime,
         orderId,
-        sessionId: customerId ? null : cartSession ?? id
+        sessionId: customerId ? null : cartSession ?? id,
       } as CartAttrs);
-     
+
+      token = jwt.sign({ id }, process.env.JWT_KEY!);
+
+      if (!customerId && !cartSession) {
+        if (req.session) {
+          req.session.cart = token;
+        }
+      }
+
       res.json(cart);
       return;
-
     } catch (err: any) {
       throw new Error(err);
     }
-
   }
 );
 
