@@ -4,16 +4,13 @@
  *
  * We are checking in this case that if customer is authenicated or we create the sesion for the user
  * **/
-import { requireCustomerAuth, validateRequest } from "@pasal/common";
-import { Cart, CartAttrs } from "../../models/cart";
-import { Request, Response } from "express";
-import express from "express";
-import { CartBodyRequest } from "../../body-request/cart/Cart.body.request";
-import jwt from "jsonwebtoken";
-import { v4 as uuidv4 } from "uuid";
-import { CartService } from "../../services/Cart.Service";
+import { validateRequest } from "@pasal/common";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
+import { CartBodyRequest } from "../../body-request/cart/Cart.body.request";
 import { UpdateQutyBodyRequest } from "../../body-request/cart/UpdateQty.body-request";
+import { CartService } from "../../services/Cart.Service";
+import logger from "../../logger";
 
 const router = express.Router();
 
@@ -68,11 +65,22 @@ router.put(
   }
 );
 
-router.patch('/api/cart', 
+router.patch('/api/cart/:id', 
 validateRequest,
 UpdateQutyBodyRequest,
 
-(req:Request, res:Response) => {
+async(req:Request, res:Response) => {
+  const id = new mongoose.Types.ObjectId(req.params.id);
+  const {...rest} = req.body;
+
+  try {
+    const updated = await CartService.findByIdAndUpdate(id, rest, {new:true});
+    res.json(updated);
+  } catch(err) {
+    logger.log('err', `Count not update the cart ${err}`);
+    throw new Error(`Count not update the cart ${err}`)
+  }
+
 
 });
 

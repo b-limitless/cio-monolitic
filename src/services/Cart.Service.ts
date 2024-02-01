@@ -19,10 +19,10 @@ export class CartServiceLocal {
     }
   }
 
-  async findByIdAndUpdate(id: string, update: any, options: any) {
+  async findByIdAndUpdate(id: mongoose.Types.ObjectId, update: any, options: any) {
     try {
       const updated = await Cart.findByIdAndUpdate(id, update, options);
-
+      console.log('updated', updated)
       return updated;
     } catch (err) {
       logger.log("info", `Can not find and update`);
