@@ -85,7 +85,7 @@ it("update the the cart item", async () => {
   newCart.subTotal = 100;
 
   const updateCart = await request(app)
-    .patch(`/api/cart/${id}`)
+    .put(`/api/cart/${id}`)
     .set("Cookie", customer)
     .send(newCart)
     .expect(200);
@@ -93,4 +93,18 @@ it("update the the cart item", async () => {
 
   expect(qty).toEqual(qtyUpdate);
   expect(subTotal).toEqual(subTotalUpdate);
+});
+
+it('update the cart qty', async() => {
+  const customer = global.signinCustomer();
+  // first create the cart
+  const response = await request(app)
+    .post("/api/cart")
+    .set("Cookie", customer)
+    .send(cartData)
+    .expect(200);
+
+  const { id } = JSON.parse(response.text);
+
+  // /api/cart/qty'
 });

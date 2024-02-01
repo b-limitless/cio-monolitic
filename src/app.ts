@@ -46,7 +46,7 @@ app.use(
   cors({
     credentials: true,
     origin: 'http://localhost:3000', 
-    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'PATCH'],
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'PATCH', 'DELETE'],
   })
 );
 
@@ -108,6 +108,6 @@ app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
 });
 
-// app.use(errorHandler);
+app.use(errorHandler);
 
 export { app };
