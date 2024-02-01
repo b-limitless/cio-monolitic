@@ -1,6 +1,28 @@
+/**
+ * As we are string accent inside the cart then type that we are strong must be same 
+ * as the model accent but for now different, right at the moment we are not working on accent
+ * thefore this should mark as note when we start to work on accen  update its model
+ * {
+ * 
+ * id: number | string;
+  meshName: string[];
+  febric: string;
+  updatedFrom: TModelNavigation;
+  price: number;
+  code?: string
+  label?:string;
+  season?:string;
+  type: TCollarAccent;}
+
+  for more detail check the accent type inside the cart model
+ * 
+ * 
+ * 
+ * **/
 import mongoose from "mongoose";
 import { ProductPartNames, ProductType } from "./types";
-//
+
+
 export interface AccentAttrs {
   type: ProductType;
   partName: ProductPartNames;
