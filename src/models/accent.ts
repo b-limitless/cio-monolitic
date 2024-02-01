@@ -22,21 +22,19 @@
 import mongoose from "mongoose";
 import { ProductPartNames, ProductType } from "./types";
 
-
 export interface AccentAttrs {
   type: ProductType;
   partName: ProductPartNames;
   price: number;
-  febric:string;
+  febric: string;
   meshName: string[];
 }
 export interface AccentDoc extends mongoose.Document {
   type: ProductType;
   partName: ProductPartNames;
   price: number;
-  febric:string;
-  meshName: string[]
-  
+  febric: string;
+  meshName: string[];
 }
 interface AccentModel extends mongoose.Model<AccentDoc> {
   build(attrs: AccentAttrs): AccentDoc;
@@ -48,7 +46,6 @@ const AccentSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     febric: { type: String, required: true },
     meshName: { type: [String], required: true },
-    
   },
   {
     toJSON: {
