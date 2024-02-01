@@ -52,6 +52,7 @@ router.post(
       availability,
       deliveryTime,
       orderId,
+      accent
     } = req.body;
 
     try {
@@ -61,6 +62,7 @@ router.post(
         thumbnailImageUrl,
         status,
         model,
+        accent,
         febric,
         modelType,
         subTotal,

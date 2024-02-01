@@ -52,6 +52,7 @@ const CartSchema = new mongoose.Schema(
       default: "open",
     },
     model: { type: Object, required: true }, // Assuming it's a subdocument, adjust as needed
+    accent: { type: Object, required: true },
     febric: { type: Object, required: true }, // Adjust based on the actual type of TFebric
     modelType: { type: String, required: true }, // Adjust based on the actual type of TMode
     subTotal: { type: Number, required: true },
