@@ -6,9 +6,12 @@ import mongoose from "mongoose";
 import { ECartStatus } from "../enum/cart";
 import { TFebric } from "../types/febric";
 import { TMode } from "../types/mode";
-import { ModelKeys, TModelRow } from "../types/model";
+import { ModelKeys, TAccentRow, TModelRow } from "../types/model";
 
 export type IModelAction = Record<ModelKeys, TModelRow>;
+export type IAccentAction = Record<ModelKeys, TAccentRow >
+
+
 
 export interface CartAttrs {
   customerId: mongoose.Schema.Types.ObjectId | null;
@@ -16,6 +19,7 @@ export interface CartAttrs {
   thumbnailImageUrl: string;
   status: ECartStatus;
   model: IModelAction;
+  accent: IAccentAction;
   febric: TFebric;
   modelType: TMode;
   subTotal: number;

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { ProductPartNames, ProductType } from "./types";
-
+//
 export interface AccentAttrs {
   type: ProductType;
   partName: ProductPartNames;
