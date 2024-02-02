@@ -25,7 +25,7 @@ const validateFebric = (value: TFebric) => {
 export const CartBodyRequest = [
     body('originalImageUrl').isString().withMessage("Original Image Url must be a string and must not be empty"),
     body('thumbnailImageUrl').isString().withMessage("Thumbnail Image Url must be a string and must not be empty"),
-    body('status').isIn(['open', 'pendingPayment', 'completed']).withMessage("Status must be one of 'open', 'pendingPayment', 'completed'"),
+    body('status').optional().isIn(['open', 'pendingPayment', 'completed']).withMessage("Status must be one of 'open', 'pendingPayment', 'completed'"),
     body('accent').isObject().withMessage("Accent must be an object"),
     body('model').isObject().withMessage("Model must be an object"),
     body('febric').custom(validateFebric),
