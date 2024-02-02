@@ -1,5 +1,6 @@
 import request from "supertest";
 import { app } from "../../../app";
+import { CartService } from "../../../services/Cart.Service";
 
 const cartData = {
   originalImageUrl:
@@ -115,4 +116,27 @@ it("update the cart qty", async () => {
   const { qty } = JSON.parse(updateCart.text);
 
   expect(qty).toEqual(2);
+});
+
+it("will delete the item if qty provided to 0", async () => {
+  const customer = global.signinCustomer();
+  // first create the cart
+  const response = await request(app)
+    .post("/api/cart")
+    .set("Cookie", customer)
+    .send(cartData)
+    .expect(200);
+
+  const { id } = JSON.parse(response.text);
+
+  await request(app)
+    .patch(`/api/cart/${id}`)
+    .set("Cookie", customer)
+    .send({ qty: 0 })
+    .expect(200);
+
+  // There should not be cart with this id
+  const findCart = await CartService.findById(id);
+
+  expect(findCart).toBeNull();
 });

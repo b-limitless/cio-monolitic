@@ -1,4 +1,4 @@
-import mongoose, { FilterQuery } from "mongoose";
+import mongoose, { FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
 import logger from "../logger";
 import { Cart, CartAttrs } from "../models/cart";
 
@@ -19,10 +19,14 @@ export class CartServiceLocal {
     }
   }
 
-  async findByIdAndUpdate(id: mongoose.Types.ObjectId, update: any, options: any) {
+  async findByIdAndUpdate(
+    id: mongoose.Types.ObjectId,
+    update: UpdateQuery<any>,  // Adjust the type as needed
+    options: QueryOptions
+  ): Promise<mongoose.Document  | null> {  // Specify the return type explicitly
     try {
       const updated = await Cart.findByIdAndUpdate(id, update, options);
-      console.log('updated', updated)
+  
       return updated;
     } catch (err) {
       logger.log("info", `Can not find and update`);
@@ -78,9 +82,10 @@ export class CartServiceLocal {
     }
   }
 
-  async deleteOne(id: string) {
+  async deleteOne(id: mongoose.Types.ObjectId) {
     try {
-      await Cart.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
+      const deleteItem = await Cart.deleteOne({ _id: id });
+      return deleteItem;
     } catch (err) {
       logger.log("info", `Can not delete Model ${err}`);
       throw new Error(`Can not delete Model ${err}`);

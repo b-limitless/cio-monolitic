@@ -71,11 +71,19 @@ UpdateQutyBodyRequest,
 
 async(req:Request, res:Response) => {
   const id = new mongoose.Types.ObjectId(req.params.id);
-  const {...rest} = req.body;
+  const {qty, ...rest} = req.body;
 
   try {
-    const updated = await CartService.findByIdAndUpdate(id, rest, {new:true});
-    res.json(updated);
+    // If qty is send 0 then simply delete the item
+    if(qty > 0) {
+      const updated = await CartService.findByIdAndUpdate(id, {qty, ...rest}, {new:true});
+      res.json(updated);
+    }
+
+    if(qty === 0) {
+      const deleteCartById = await CartService.deleteOne(id); 
+      res.json(deleteCartById);
+    }
   } catch(err) {
     logger.log('err', `Count not update the cart ${err}`);
     throw new Error(`Count not update the cart ${err}`)
