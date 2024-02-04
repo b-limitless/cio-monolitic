@@ -19,6 +19,16 @@ export class CustomerServiceLocal {
       throw new Error(err);
     }
   }
+  async findById(id: mongoose.Types.ObjectId) {
+    try {
+      const customer = await Customer.findById(id);
+      return customer;
+    } catch(err:any) {
+      logger.log("error", `Could not find customer: ${err}`);
+      throw new Error(err);
+    }
+    
+  }
 }
 
 const CustomerService = new CustomerServiceLocal();
