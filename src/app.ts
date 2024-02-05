@@ -1,10 +1,12 @@
 import { NotFoundError, currentCustomer, currentUser, errorHandler } from "@pasal/common";
-import { currentCartSession } from "./common/current-cart-session";
 import bodyParser, { json } from 'body-parser';
 import cookieSession from "cookie-session";
 import cors from "cors";
 import express from "express";
 import "express-async-errors";
+import { currentCartSession } from "./common/current-cart-session";
+import { createAccentRouter } from "./routes/accent/new";
+import { currentUserRouter } from "./routes/auth/current-user";
 import { KYCRouter } from "./routes/auth/kyc";
 import { permissionRouter } from "./routes/auth/permission";
 import { profileRouter } from "./routes/auth/profile";
@@ -14,25 +16,22 @@ import { signoutRouter } from "./routes/auth/signout";
 import { signupRouter } from "./routes/auth/signup";
 import { teamRouter } from "./routes/auth/team";
 import { verificationRouter } from "./routes/auth/verify";
+import { getCartRouter } from "./routes/cart";
+import { deleteCartRouter } from "./routes/cart/delete";
+import { createCartRouter } from "./routes/cart/new";
+import { updateCartRouter } from "./routes/cart/update";
 import { currentCustomerRouter } from "./routes/customer/current-customer";
 import { customerSigninRouter } from "./routes/customer/signin";
 import { customerSignupRouter } from "./routes/customer/signup";
+import { createModelRouter } from "./routes/model/new";
 import { indexProductRouter } from "./routes/product";
 import { deleteFebricRouter } from "./routes/product/delete";
 import { createFebricRouter } from "./routes/product/new";
 import { showProductRouter } from "./routes/product/show";
 import { updateFebricRouter } from "./routes/product/update";
 import { uploadeRouter } from "./routes/product/upload";
-import { currentUserRouter } from "./routes/auth/current-user";
-import { createModelRouter } from "./routes/model/new";
-import { createAccentRouter } from "./routes/accent/new";
-import { updateCartRouter } from "./routes/cart/update";
-import { createCartRouter } from "./routes/cart/new";
-import { deleteCartRouter } from "./routes/cart/delete";
-import { createStyleRouter } from "./routes/style/new";
-import { getCartRouter } from "./routes/cart";
-import { frontEndHosts } from "./config/hots";
 import { newMeasurementRouter } from "./routes/shirt-measurement/new";
+import { createStyleRouter } from "./routes/style/new";
 
 
 

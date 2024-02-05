@@ -12,7 +12,8 @@ export interface ShirtMeasurementAttrs {
   wrist: number | null;
   neck: number | null;
 }
-interface ShirtMeasurementDoc extends mongoose.Document {
+export interface ShirtMeasurementDoc extends mongoose.Document {
+  customerId: mongoose.Types.ObjectId;
   sleevLength: number | null;
   shoulderWidth: number | null;
   chestAround: number | null;
@@ -28,6 +29,10 @@ interface ShirtMeasurementModel extends mongoose.Model<ShirtMeasurementDoc> {
 }
 const ShirtMeasurementSchema = new mongoose.Schema(
   {
+    customerId: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Customer'
+    },
     sleevLength: { type: Number, default: null },
     shoulderWidth: { type: Number, default: null },
     chestAround: { type: Number, default: null },

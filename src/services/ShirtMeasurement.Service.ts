@@ -63,7 +63,7 @@ export class ShirtMeasurementServiceLocal {
 
   async findOneAndUpdateOrInsert(filter:FilterQuery<any>, update:UpdateQuery<any>, options:any) {
     try {
-        const updated = await ShirtMeasurement.findByIdAndUpdate(filter, update, {...options, upsert: true, new: true, runValidators: true});
+        const updated = await ShirtMeasurement.findOneAndUpdate(filter, update, {...options, upsert: true, new: true, runValidators: true});
         return updated;
       } catch (err) {
         logger.log('info', `Can not find and update`);
