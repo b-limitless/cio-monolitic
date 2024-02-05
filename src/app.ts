@@ -32,6 +32,7 @@ import { deleteCartRouter } from "./routes/cart/delete";
 import { createStyleRouter } from "./routes/style/new";
 import { getCartRouter } from "./routes/cart";
 import { frontEndHosts } from "./config/hots";
+import { newMeasurementRouter } from "./routes/shirt-measurement/new";
 
 
 
@@ -103,6 +104,7 @@ app.use(updateCartRouter);
 app.use(deleteCartRouter);
 app.use(createStyleRouter);
 app.use(getCartRouter);
+app.use(newMeasurementRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
