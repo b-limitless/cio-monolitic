@@ -32,6 +32,10 @@ interface ShippingModel extends mongoose.Model<ShippingDoc> {
 }
 const ShippingSchema = new mongoose.Schema(
   {
+    customerId: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Customer'
+    },
     firstName: { type: String, default: null },
     lastName: { type: String, default: null },
     addressLine1: { type: String, default: null },
