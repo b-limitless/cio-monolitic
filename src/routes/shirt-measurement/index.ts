@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.get(
   "/api/shirt/measurement",
-  ShirtMeasurmeentBodyRequest,
   validateRequest,
   requireCustomerAuth,
   async (req: Request, res: Response) => {
@@ -17,7 +16,6 @@ router.get(
     try {
       const filter = { customerId: new mongoose.Types.ObjectId(customerId) };
       const fetchMeasurement = await ShirtMeasurement.findOne(filter).populate("customerId");
-      console.log('fetchMeasurement', fetchMeasurement)
       res.json(fetchMeasurement);
     } catch (err) {
       logger.log("error", `Could not update the shirt measurement ${err}`);

@@ -12,10 +12,17 @@ router.get("/api/cart", async (req: Request, res: Response) => {
     : null;
   const sessionId = req?.currentCartSession?.id;
 
-  console.log("customer id, session id", customerId, sessionId);
+  let filter:any = {};
+
+  if(customerId) {
+    filter.customerId = customerId;
+  } else if(sessionId) {
+    filter.sessionId = sessionId;
+  }
+
 
   try {
-    const carts = await CartService.find({ customerId, sessionId });
+    const carts = await CartService.find(filter);
     res.json(carts);
   } catch (err) {
     res.sendStatus(500).json(`Could not fetch the carts ${err}`);

@@ -4,6 +4,9 @@ import jwt from "jsonwebtoken";
 import { CustomerBodyRequest } from "../../body-request/customer/Customer.body-request";
 import { CustomerService } from "../../services/Customer.Service";
 import { Password } from "../../utils/password";
+import mongoose from "mongoose";
+import { CartService } from "../../services/Cart.Service";
+import logger from "../../logger";
 
 const router = express.Router();
 
@@ -13,6 +16,11 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    
+    const customerId = req?.currentCustomer?.id
+      ? new mongoose.Types.ObjectId(req.currentCustomer.id)
+      : null; // or simply say clientCartSession object
+    const sessionId = req?.currentCartSession?.id;
 
     const existingUser = await CustomerService.findOne(email);
 
@@ -27,6 +35,20 @@ router.post(
 
     if (!passwordMatch) {
       throw new BadRequestError("Invalid credentials", "message");
+    }
+
+    // Check if there is cart session is active then update the cart with this id 
+    if(sessionId) {
+      // Update the cart collection with this customer id 
+      const filter = {sessionId};
+      const update = {customerId: existingUser.id};
+      try {
+        await CartService.findByWhereClauseAndUpdate(filter, update, {});
+      } catch(err) {
+        logger.log('error', `Could not update the cart ${err}`)
+        throw new Error(`Could not update the cart ${err}`);
+      }
+      
     }
 
     const userJWT = jwt.sign(

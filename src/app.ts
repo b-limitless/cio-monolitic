@@ -35,6 +35,7 @@ import { createStyleRouter } from "./routes/style/new";
 import { customerUpdateRouter } from "./routes/customer/update";
 import { indexMeasurementRouter } from "./routes/shirt-measurement";
 import { newShippingRouter } from "./routes/shipping/new";
+import { indexShippingRouter } from "./routes/shipping";
 
 
 
@@ -110,6 +111,7 @@ app.use(newMeasurementRouter);
 app.use(customerUpdateRouter);
 app.use(indexMeasurementRouter);
 app.use(newShippingRouter);
+app.use(indexShippingRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
