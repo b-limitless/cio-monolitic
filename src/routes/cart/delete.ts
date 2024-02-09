@@ -1,3 +1,9 @@
+/**
+ * Delete product by product id
+ * For security concert we need to add customerId who is deleting the item either 
+ * only customer id or session id, both can not be possible because customer id will be 
+ * the same but session can be different therefore its important to considere this
+ * **/
 import { BadRequestError, NotFoundError } from '@pasal/common';
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
@@ -12,12 +18,21 @@ router.delete('/api/cart/:id', async(req:Request, res:Response) => {
     const sessionId = req?.currentCartSession?.id;
     const id = new mongoose.Types.ObjectId(req.params.id);
     
-    // validate this is mongoose id
     if(!mongoose.Types.ObjectId.isValid(id)) {
         throw new BadRequestError('Invalid cart id provided');
     }
 
-    const filter = {_id: id, customerId, sessionId};
+    const filter:any = {_id: id}; // customerId, sessionId
+
+    if(customerId) {
+        filter.customerId = customerId;
+    } else if(sessionId) {
+        filter.sessionId = sessionId;
+    }
+
+    if(!customerId && !sessionId) {
+        throw new BadRequestError('Could not delete the cart item');
+    }
 
     const cart = await CartService.deleteOneByWhereClause(filter);
 
