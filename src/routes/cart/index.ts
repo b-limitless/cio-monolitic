@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { currentCartSession } from "@pasal/common";
 const router = express.Router();
 import jwt from 'jsonwebtoken';
+import { unescape } from "querystring";
 
 router.get("/api/cart", async (req: Request, res: Response) => {
   const customerId = req?.currentCustomer?.id
@@ -15,9 +16,16 @@ router.get("/api/cart", async (req: Request, res: Response) => {
   let filter:any = {};
 
   if(customerId) {
-    filter.customerId = customerId;
+    filter.customerId = customerId ?? null;
   } else if(sessionId) {
-    filter.sessionId = sessionId;
+    filter.sessionId = sessionId ?? null;
+  }
+
+  console.log('sessionId', sessionId, customerId, filter)
+
+  // If no session and no cutomer id is set then simply no resonse
+  if(!sessionId && !customerId) {
+    return res.send([]);
   }
 
 

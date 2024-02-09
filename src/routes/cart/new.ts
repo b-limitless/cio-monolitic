@@ -76,6 +76,8 @@ router.post(
 
       token = jwt.sign({ id }, process.env.JWT_KEY!);
 
+      console.log('id', id)
+
       if (!customerId && !cartSession) {
         if (req.session) {
           req.session.cart = token;
