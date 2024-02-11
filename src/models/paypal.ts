@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 // Creating interface
 export interface PaypalAttrs {
-  userId: mongoose.Schema.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
   clientId: string;
   clientSecret: string;
 }
 
 // An interface descript the properties that a Paypal document pass
 interface PaypalDoc extends mongoose.Document {
-  userId: mongoose.Schema.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
   clientId: string;
   clientSecret: string;
 }
