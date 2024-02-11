@@ -1,3 +1,7 @@
+/**
+ * 
+ * Column name need to use in came case for the consistency
+*/
 import mongoose from "mongoose";
 
 

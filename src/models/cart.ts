@@ -1,6 +1,9 @@
 /**
  * When checkout is completed then orderId is assigned to each item and it could be
  * In incremental order
+ * 
+ * Few model defination
+ * When user sucessfully paid for the cart then it will generate id and will get added to the cart
  * **/
 import mongoose from "mongoose";
 import { ECartStatus } from "../enum/cart";
@@ -29,6 +32,7 @@ export interface CartAttrs {
   deliveryTime?: string | null;
   orderId: string | null;
   sessionId:string | null;
+  cartId:string|null;
 }
 
 export interface CartDoc extends mongoose.Document {}
@@ -61,7 +65,8 @@ const CartSchema = new mongoose.Schema(
     availability: { type: String },
     deliveryTime: { type: String },
     orderId: { type: String },
-    sessionId: {type:String}
+    sessionId: {type:String},
+    cartId: {type:String} 
   },
   {
     toJSON: {
