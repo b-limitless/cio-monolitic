@@ -37,6 +37,7 @@ import { indexMeasurementRouter } from "./routes/shirt-measurement";
 import { newShippingRouter } from "./routes/shipping/new";
 import { indexShippingRouter } from "./routes/shipping";
 import { createPaypalRouter } from "./routes/paypal/new";
+import { indexPaypalRouter } from "./routes/paypal";
 
 
 
@@ -114,6 +115,7 @@ app.use(indexMeasurementRouter);
 app.use(newShippingRouter);
 app.use(indexShippingRouter);
 app.use(createPaypalRouter);
+app.use(indexPaypalRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError("Route did not find");
