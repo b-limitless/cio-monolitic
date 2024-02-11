@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
 // Creating interface
-interface PaypalAttrs {
+export interface PaypalAttrs {
+  userId: mongoose.Schema.Types.ObjectId;
   clientId: string;
   clientSecret: string;
 }
@@ -34,6 +35,14 @@ const PaypalSchema = new mongoose.Schema(
       type: String,
       default: null,
       required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: () => new Date()
+    },
+    updatedAt: {
+        type: Date,
+        default: () => new Date()
     },
   },
   {
